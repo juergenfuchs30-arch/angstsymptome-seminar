@@ -1,0 +1,100 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Angstsymptome zuordnen – Seminartag</title><style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#132238;background:#f4f7fc}*{box-sizing:border-box}body{margin:0}header{background:#17375b;color:white;padding:22px max(18px,calc((100vw - 1100px)/2));}header h1{margin:0 0 6px;font-size:clamp(1.45rem,3.3vw,2.2rem)}header p{margin:0;color:#dae8f9}main{max-width:1100px;margin:24px auto;padding:0 16px 40px}.intro{color:#45566a;line-height:1.5}.toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:20px 0}.pill{border-radius:100px;background:#e6effc;padding:8px 14px;font-weight:700}.button{border:1px solid #bccce0;border-radius:12px;background:white;color:#17375b;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer}.button:hover,.button:focus-visible{outline:2px solid #4e85c2;outline-offset:1px}.button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#204f82;color:white;border-color:#204f82}.stage{background:white;border-radius:18px;padding:24px;border:1px solid #d5dfed;box-shadow:0 4px 18px #142f5010;text-align:center}.mini{font-size:.9rem;color:#4d647c}.term{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none;margin:16px auto 4px;padding:25px 15px;display:flex;align-items:center;justify-content:center;max-width:540px;min-height:115px;border-radius:16px;border:2px solid #598bc0;background:#e8f2ff;font-size:clamp(1.2rem,4vw,1.7rem);font-weight:800;cursor:grab;box-shadow:0 5px 0 #c7def5}.term:active{cursor:grabbing}.term.dragging{opacity:.35}.ghost{position:fixed;left:0;top:0;z-index:1000;pointer-events:none;transform:translate3d(-9999px,-9999px,0) translate(-50%,-50%);will-change:transform;width:min(310px,80vw);padding:18px;background:#e8f2ff;border:2px solid #2867a5;border-radius:14px;box-shadow:0 12px 28px #142f5055;font-weight:800;text-align:center}.bins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}.bin{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:140px;border:2px dashed #87a1c0;border-radius:15px;background:#fff;padding:14px 8px;color:#183a5d;cursor:pointer;font:inherit}.bin strong{font-size:clamp(1rem,2.4vw,1.35rem)}.bin small{color:#56697d;margin-top:8px}.bin.over,.bin:focus-visible{background:#def2ff;border-color:#14649e;outline:3px solid #94c8ed}.bin .symbol{font-size:1.7rem;margin-bottom:5px}.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}.group{background:#fff;border:1px solid #d5dfed;border-radius:14px;padding:14px;min-height:125px}.group h2{font-size:1rem;margin:0 0 10px}.tokens{display:flex;flex-wrap:wrap;gap:7px}.token{border:1px solid #c5d5e9;color:#23496f;background:#f4f8ff;border-radius:9px;padding:7px 9px;font:inherit;font-size:.84rem;cursor:pointer;text-align:left}.token:hover{background:#dfedfd}.score{border-radius:16px;border:1px solid #b7d8c3;background:#edf9f1;padding:20px;margin:20px 0}.score h2{margin-top:0}.mistakes{margin:10px 0;padding-left:24px}.correct{color:#17643d}.incorrect{color:#a53d31}.status{min-height:24px;color:#315b80;font-weight:600;margin:12px 0 0}.footnote{margin:23px 0;color:#51657a;font-size:.88rem;line-height:1.55}.hidden{display:none!important}@media(max-width:700px){main{margin:14px auto}.stage{padding:18px 12px}.bins{gap:7px}.bin{min-height:115px;padding:8px 3px}.bin .symbol{font-size:1.3rem}.bin strong{font-size:.96rem}.bin small{font-size:.73rem}.groups{grid-template-columns:1fr}.group{min-height:75px}.toolbar{gap:7px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}@media print{header{background:white;color:#132238;padding:15px}header p{color:#555}.toolbar,.stage,.bins,.footnote .button{display:none!important}main{max-width:100%;margin:0}.groups{display:grid;grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<header><h1>Angstsymptome zuordnen</h1><p>Seminartag · Ängste im Kindes- und Jugendalter · Grund- und Mittelschule</p></header>
+<main><p class="intro">Ordnen Sie jede Wortkarte einer der drei Kategorien <b>Denken</b>, <b>Körper</b> oder <b>Verhalten</b> zu. Ziehen Sie die Karte auf ein Feld – oder tippen/klicken Sie einfach auf die passende Kategorie. Auch mit Tastatur bedienbar.</p>
+<div class="toolbar"><span class="pill" id="progress">0 von 35 zugeordnet</span><button class="button" id="undo" disabled>↶ Rückgängig</button><button class="button" id="reset">Neu beginnen</button><button class="button" id="solution">Musterlösung öffnen</button></div>
+<section class="stage" aria-label="Aktuelle Wortkarte"><div class="mini" id="currentNumber">Karte 1 von 35</div><div class="term" id="card" tabindex="0" role="group" aria-label="Aktuelle Wortkarte; mit Ziehen oder durch Kategorieauswahl zuordnen">Zittern der Stimme</div><div class="mini">Karte ziehen oder eine Kategorie auswählen</div><p class="status" id="status" aria-live="polite"></p></section>
+<section class="bins" aria-label="Zuordnungskategorien"><button class="bin" data-cat="Denken"><span class="symbol" aria-hidden="true">💭</span><strong>Denken</strong><small>Gedanken &amp; Bewertung</small></button><button class="bin" data-cat="Körper"><span class="symbol" aria-hidden="true">♡</span><strong>Körper</strong><small>Körperliche Reaktionen</small></button><button class="bin" data-cat="Verhalten"><span class="symbol" aria-hidden="true">↗</span><strong>Verhalten</strong><small>Beobachtbare Handlungen</small></button></section>
+<div class="toolbar"><button class="button primary" id="evaluate" disabled>Zuordnung auswerten</button><span class="mini" id="hint">Nach der letzten Karte können Sie Ihre Ergebnisse auswerten.</span></div>
+<section id="results" class="score hidden" aria-live="polite"></section>
+<section class="groups" id="groups" aria-label="Bereits zugeordnete Begriffe"></section>
+<p class="footnote">Tipp: Tippen Sie auf einen bereits zugeordneten Begriff, um ihn erneut einer Kategorie zuzuweisen. Bei dieser Übung steht jeweils <strong>eine Wortkarte</strong> im Mittelpunkt. Manche Symptome können je nach Kontext mehr als einer Ebene zugeordnet werden; die Musterlösung verwendet jeweils die naheliegendste Hauptkategorie.</p>
+</main>
+<script>const DATA=[{"term": "Zittern der Stimme", "answer": "Körper"}, {"term": "Schwitzen", "answer": "Körper"}, {"term": "Gedankenrasen", "answer": "Denken"}, {"term": "Nägelkauen", "answer": "Verhalten"}, {"term": "Erhöhte Herzfrequenz", "answer": "Körper"}, {"term": "Müdigkeit", "answer": "Körper"}, {"term": "Gedanken an Gefahr", "answer": "Denken"}, {"term": "Weinen oder Schreien", "answer": "Verhalten"}, {"term": "Mundtrockenheit", "answer": "Körper"}, {"term": "Selbstkritische Gedanken", "answer": "Denken"}, {"term": "Erbrechen", "answer": "Körper"}, {"term": "Vermeidungsverhalten", "answer": "Verhalten"}, {"term": "Übelkeit", "answer": "Körper"}, {"term": "Konzentrationsschwierigkeiten", "answer": "Denken"}, {"term": "Getrübte Sicht", "answer": "Körper"}, {"term": "Starre Haltung", "answer": "Verhalten"}, {"term": "Kopfschmerzen", "answer": "Körper"}, {"term": "Gedanken daran, verrückt zu werden", "answer": "Denken"}, {"term": "Stottern", "answer": "Verhalten"}, {"term": "Urinieren", "answer": "Körper"}, {"term": "Muskuläre Anspannung", "answer": "Körper"}, {"term": "Black-out oder Vergesslichkeit", "answer": "Denken"}, {"term": "Zähneknirschen", "answer": "Verhalten"}, {"term": "Erröten", "answer": "Körper"}, {"term": "Gedanken daran, dumm zu erscheinen", "answer": "Denken"}, {"term": "Vermeidung von Augenkontakt", "answer": "Verhalten"}, {"term": "Taubheitsgefühle", "answer": "Körper"}, {"term": "Gedanken an Verunreinigung", "answer": "Denken"}, {"term": "Verstärkte Atmung", "answer": "Körper"}, {"term": "Daumenlutschen", "answer": "Verhalten"}, {"term": "Hitze- oder Kälteschauer", "answer": "Körper"}, {"term": "Gedanken daran, verletzt zu werden", "answer": "Denken"}, {"term": "Zittern der Lippe", "answer": "Körper"}, {"term": "Magenbeschwerden", "answer": "Körper"}, {"term": "Verkrampfte Kiefermuskulatur", "answer": "Körper"}];const CATS=['Denken','Körper','Verhalten'];let order=[],assigned={},idx=0,history=[],moving=null;const $=id=>document.getElementById(id);const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function start(){order=DATA.map((_,i)=>i);assigned={};idx=0;history=[];moving=null;$('results').classList.add('hidden');render();}
+function current(){if(moving!==null)return moving;while(idx<order.length&&assigned[order[idx]]!==undefined)idx++;return idx<order.length?order[idx]:null;}
+function render(){const n=Object.keys(assigned).length;const id=current();$('progress').textContent=`${n} von ${DATA.length} zugeordnet`;$('undo').disabled=!history.length;$('evaluate').disabled=n!==DATA.length; $('card').classList.toggle('hidden',id===null);$('currentNumber').textContent=id===null?'Alle Wortkarten zugeordnet':moving!==null?'Begriff neu zuordnen':`Karte ${n+1} von ${DATA.length}`;if(id!==null)$('card').textContent=DATA[id].term;$('status').textContent=id===null?'Fertig! Jetzt können Sie die Zuordnungen auswerten.':'';$('hint').textContent=n===DATA.length?'Alle Karten verteilt – jetzt auswerten.':'Nach der letzten Karte können Sie Ihre Ergebnisse auswerten.';$('groups').innerHTML=CATS.map(cat=>`<section class="group"><h2>${cat} (${Object.values(assigned).filter(x=>x===cat).length})</h2><div class="tokens">${Object.entries(assigned).filter(([k,v])=>v===cat).map(([k])=>`<button class="token" data-id="${k}" title="Erneut zuordnen">${esc(DATA[k].term)} ↶</button>`).join('')}</div></section>`).join('');document.querySelectorAll('.token').forEach(b=>b.addEventListener('click',()=>{moving=Number(b.dataset.id);$('results').classList.add('hidden');render();$('card').focus();}));}
+function assign(cat){if(!CATS.includes(cat))return;const id=current();if(id===null)return;history.push({id,prev:assigned[id],idx,moving});assigned[id]=cat;if(moving!==null)moving=null;else idx++;$('results').classList.add('hidden');render();}
+function undo(){const item=history.pop();if(!item)return;if(item.prev===undefined)delete assigned[item.id];else assigned[item.id]=item.prev;idx=item.idx;moving=item.moving;$('results').classList.add('hidden');render();}
+function evaluate(){if(Object.keys(assigned).length!==DATA.length)return;let bad=DATA.map((x,i)=>({...x,id:i,selected:assigned[i]})).filter(x=>x.selected!==x.answer);$('results').classList.remove('hidden');$('results').innerHTML=`<h2>Auswertung: ${DATA.length-bad.length} von ${DATA.length} richtig</h2>${bad.length?`<p>Diese Begriffe weichen von der Musterlösung ab. Tippen Sie auf einen Begriff in den Kategorien, um ihn erneut zuzuordnen:</p><ul class="mistakes">${bad.map(x=>`<li><strong>${esc(x.term)}</strong>: Ihre Wahl <span class="incorrect">${x.selected}</span>, Musterlösung <span class="correct">${x.answer}</span></li>`).join('')}</ul>`:'<p>Alle Begriffe entsprechen der Musterlösung.</p>'}`; $('results').scrollIntoView({behavior:'auto',block:'start'});}
+document.querySelectorAll('.bin').forEach(btn=>{btn.addEventListener('click',()=>assign(btn.dataset.cat));btn.addEventListener('dragover',e=>{e.preventDefault();btn.classList.add('over')});btn.addEventListener('dragleave',()=>btn.classList.remove('over'));btn.addEventListener('drop',e=>{e.preventDefault();btn.classList.remove('over');assign(btn.dataset.cat)});});
+$('undo').onclick=undo;$('evaluate').onclick=evaluate;$('reset').onclick=()=>{if(Object.keys(assigned).length===0||confirm('Alle bisherigen Zuordnungen löschen und neu beginnen?'))start();};$('solution').onclick=()=>window.open('angstsymptome_musterloesung.html','_blank','noopener');
+// Safari- und Touch-optimiertes Ziehen: keine Pointer-Capture-Abhängigkeit.
+// Eine einzige DOM-Abfrage pro Animationsframe statt DOM-Arbeit bei jedem Event.
+const card=$('card');
+let gesture=null, ghost=null, frame=0, hoverBin=null;
+function setHover(bin){
+  if(hoverBin===bin)return;
+  if(hoverBin)hoverBin.classList.remove('over');
+  hoverBin=bin;
+  if(bin)bin.classList.add('over');
+}
+function binAt(x,y){const element=document.elementFromPoint(x,y);return element?element.closest('.bin'):null;}
+function paint(){
+  frame=0;
+  if(!gesture||!gesture.dragged)return;
+  if(ghost)ghost.style.transform=`translate3d(${gesture.x}px,${gesture.y}px,0) translate(-50%,-50%)`;
+  setHover(binAt(gesture.x,gesture.y));
+}
+function redraw(){if(!frame)frame=requestAnimationFrame(paint);}
+function begin(x,y,kind){
+  if(current()===null)return;
+  gesture={startX:x,startY:y,x,y,kind,dragged:false};
+}
+function move(x,y){
+  if(!gesture)return;
+  gesture.x=x;gesture.y=y;
+  if(!gesture.dragged&&Math.hypot(x-gesture.startX,y-gesture.startY)>10){
+    gesture.dragged=true;
+    ghost=document.createElement('div');
+    ghost.className='ghost';ghost.textContent=card.textContent;
+    document.body.appendChild(ghost);
+    card.classList.add('dragging');
+  }
+  if(gesture.dragged)redraw();
+}
+function finish(x,y,cancelled=false){
+  if(!gesture)return;
+  const dragged=gesture.dragged;
+  const destination=dragged&&!cancelled?binAt(x,y):null;
+  gesture=null;
+  if(frame){cancelAnimationFrame(frame);frame=0;}
+  if(ghost){ghost.remove();ghost=null;}
+  card.classList.remove('dragging');setHover(null);
+  if(destination)assign(destination.dataset.cat);
+}
+// Touch Events mit passiv:false sind auf iPhone/iPad stabiler als Pointer Capture.
+card.addEventListener('touchstart',e=>{
+  if(e.touches.length!==1||gesture)return;
+  const t=e.touches[0];begin(t.clientX,t.clientY,'touch');
+},{passive:true});
+window.addEventListener('touchmove',e=>{
+  if(!gesture||gesture.kind!=='touch')return;
+  if(e.touches.length!==1){finish(0,0,true);return;}
+  const t=e.touches[0];
+  move(t.clientX,t.clientY);
+  if(gesture&&gesture.dragged&&e.cancelable)e.preventDefault();
+},{passive:false});
+window.addEventListener('touchend',e=>{
+  if(!gesture||gesture.kind!=='touch')return;
+  const t=e.changedTouches[0];
+  if(t)finish(t.clientX,t.clientY);else finish(0,0,true);
+},{passive:true});
+window.addEventListener('touchcancel',()=>{if(gesture&&gesture.kind==='touch')finish(0,0,true);},{passive:true});
+// Mausbedienung auf Notebook und Desktop.
+card.addEventListener('mousedown',e=>{
+  if(e.button!==0||gesture)return;
+  begin(e.clientX,e.clientY,'mouse');
+  e.preventDefault();
+});
+window.addEventListener('mousemove',e=>{if(gesture&&gesture.kind==='mouse')move(e.clientX,e.clientY);});
+window.addEventListener('mouseup',e=>{if(gesture&&gesture.kind==='mouse')finish(e.clientX,e.clientY);});
+window.addEventListener('blur',()=>finish(0,0,true));
+card.addEventListener('keydown',e=>{
+  if(['1','2','3'].includes(e.key)){
+    e.preventDefault();assign(CATS[Number(e.key)-1]);
+  }
+});
+start();
+</script></body></html>
